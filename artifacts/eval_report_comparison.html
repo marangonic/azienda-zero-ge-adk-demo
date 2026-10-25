@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <title>Azienda Zero — ADK Multi-Agent Graph Evaluation (Local vs Cloud)</title>
+  <style>
+    body { font-family: 'Google Sans', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 32px; }
+    .card { background: #ffffff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 24px; }
+    h1 { color: #1a73e8; margin-top: 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; font-size: 14px; }
+    th { background: #f1f5f9; color: #1e293b; }
+    .badge { background: #dcfce7; color: #166534; padding: 4px 10px; border-radius: 999px; font-weight: 600; }
+    code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🏥 Azienda Zero Veneto — ADK Multi-Agent Graph Evaluation</h1>
+    <p>Confronto tra la valutazione eseguita in <strong>Locale (<code>adk web</code>)</strong> e la valutazione ripetuta in <strong>Cloud (<code>Vertex AI Agent Engine</code> su <code>rootprj-377111</code>)</strong>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Test Case ID</th>
+          <th>Traiettoria Nodi del Grafo</th>
+          <th>Tool Invocati</th>
+          <th>Locale: Trajectory Score</th>
+          <th>Locale: Rubric Score</th>
+          <th>Cloud: Trajectory Score</th>
+          <th>Cloud: Rubric Score</th>
+          <th>Stato</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>case_1_ulss_pdta_kpi_and_sla</code></td><td><code>azero_orchestrator → ulss_pdta_kpi_agent</code></td><td><code>transfer_to_agent, query_ulss_pdta_kpi, check_pdta_sla_alert</code></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><span class='badge'>✅ PASS</span></td></tr><tr><td><code>case_2_crav_acn_gdpr_hipaa_compliance</code></td><td><code>azero_orchestrator → crav_compliance_agent</code></td><td><code>transfer_to_agent, verify_acn_gdpr_rules, search_crav_capitolati</code></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><span class='badge'>✅ PASS</span></td></tr><tr><td><code>case_3_psn_sizing_usd_and_eol_guardrail</code></td><td><code>azero_orchestrator → psn_cloud_sizing_agent</code></td><td><code>transfer_to_agent, calculate_vm_mssql_sizing_usd</code></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><span class='badge'>✅ PASS</span></td></tr><tr><td><code>case_4_telemetry_and_graph_trace</code></td><td><code>azero_orchestrator</code></td><td><code>get_azero_session_telemetry</code></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><strong>1.00</strong></td><td><span class='badge'>✅ PASS</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

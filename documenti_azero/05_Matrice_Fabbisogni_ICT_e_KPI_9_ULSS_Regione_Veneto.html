@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="utf-8"><title>Matrice Fabbisogni ICT, Licenze e KPI PDTA delle 9 ULSS Venete e IOV</title></head>
+<body>
+<h1>AZIENDA ZERO — REGIONE DEL VENETO</h1>
+<h2>Matrice Comparativa delle 9 Aziende ULSS e IOV: Bacino Assistiti, KPI PDTA, COT e Server da Migrare</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Azienda Sanitaria</th>
+      <th>Sede</th>
+      <th>Assistiti</th>
+      <th>COT Attive</th>
+      <th>Time-to-Treatment PDTA (Target &lt;=30 gg)</th>
+      <th>Pazienti Telemedicina</th>
+      <th>Stato SLA PDTA</th>
+      <th>Workload / Server da Consolidare su Cloud</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>ULSS 1 Dolomiti</td><td>Belluno</td><td>197.000</td><td>4/4 (100%)</td><td>24 gg</td><td>4.850</td><td>CONFORME</td><td>1 VM RHEL 9 (4 vCPU, 16 GiB RAM, No MSSQL)</td></tr>
+    <tr><td>ULSS 2 Marca Trevigiana</td><td>Treviso</td><td>885.000</td><td>9/9 (100%)</td><td>26 gg</td><td>19.400</td><td>CONFORME</td><td>1 VM Windows Server 2022 + SQL Server 2022 Standard (8 vCPU, 32 GiB RAM)</td></tr>
+    <tr><td>ULSS 3 Serenissima</td><td>Venezia-Mestre</td><td>612.000</td><td>6/6 (100%)</td><td>28 gg</td><td>14.200</td><td>CONFORME</td><td>1 VM RHEL 9 (8 vCPU, 32 GiB RAM, Cloud SQL Postgres)</td></tr>
+    <tr><td>ULSS 4 Veneto Orientale</td><td>San Donà di Piave</td><td>228.000</td><td>3/3 (100%)</td><td>25 gg</td><td>5.600</td><td>CONFORME</td><td>1 VM Ubuntu 22.04 LTS (4 vCPU, 16 GiB RAM)</td></tr>
+    <tr><td>ULSS 6 Euganea</td><td>Padova</td><td>932.000</td><td>10/10 (100%)</td><td>27 gg</td><td>23.800</td><td>CONFORME</td><td>2 VM Windows Server 2022 + SQL Server 2022 Standard (8 vCPU, 32 GiB RAM) + 1 VM Legacy Windows Server 2012 R2 (FUORI SUPPORTO)</td></tr>
+    <tr><td>ULSS 7 Pedemontana</td><td>Bassano del Grappa</td><td>358.000</td><td>4/4 (100%)</td><td>29 gg</td><td>8.900</td><td>ATTENZIONE_SOGLIA</td><td>1 VM Windows Server 2022 (8 vCPU, 32 GiB RAM, SQL Server 2012 FUORI SUPPORTO)</td></tr>
+    <tr><td>ULSS 8 Berica</td><td>Vicenza</td><td>502.000</td><td>5/5 (100%)</td><td>23 gg</td><td>12.700</td><td>CONFORME</td><td>1 VM RHEL 9 (8 vCPU, 32 GiB RAM) per Gateway CTI 116117</td></tr>
+    <tr><td>ULSS 9 Scaligera</td><td>Verona</td><td>926.000</td><td>9/9 (100%)</td><td>31 gg</td><td>21.100</td><td>ALLERTA_SLA (&gt;30 gg)</td><td>2 VM Windows Server 2022 + SQL Server 2022 Standard (8 vCPU, 32 GiB RAM)</td></tr>
+    <tr><td>IOV - Istituto Oncologico Veneto</td><td>Padova</td><td>48.000</td><td>Hub Regionale</td><td>18 gg</td><td>9.500</td><td>ECCELLENTE</td><td>Cluster AI &amp; Tumor Board su Vertex AI / GCP</td></tr>
+  </tbody>
+</table>
+<h3>Regola di Calcolo Costi Infrastrutturali per il Capitolato Economico CRAV</h3>
+<p>Tutti i prospetti economici di sizing Cloud devono essere espressi in <strong>dollari USA su base mensile (<code>$/mo</code>)</strong> esponendo obbligatoriamente: <strong>Prezzo Mese List (<code>$/mo</code>)</strong>, <strong>Prezzo Mese 1Y CUD (<code>$/mo</code>)</strong>, <strong>Prezzo Mese 3Y CUD (<code>$/mo</code>)</strong>, il <strong>Costo Mese con Sistema Operativo (<code>OS $/mo</code> e <code>Totale con OS $/mo</code>) solo per gli OS supportati</strong> (escludendo il costo licenza per gli OS fuori supporto come Windows Server 2012 R2 o CentOS 7) e il <strong>COSTO MESE LICENZA MSSQL (<code>$/mo</code>) in colonna separata solo per le istanze MS SQL Server supportate su OS supportato</strong> (non fornire il costo licenza DB se il DB è fuori supporto o se l'OS sottostante è fuori supporto).</p>
+</body></html>

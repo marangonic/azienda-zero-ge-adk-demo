@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="utf-8"><title>Direttiva Privacy GDPR, CDPA, Inapplicabilità HIPAA USA e Qualifica ACN</title></head>
+<body>
+<h1>AZIENDA ZERO — UOC Affari Generali, Legali e Privacy & UOC Sistemi Informativi</h1>
+<h2>Nota di Indirizzo su Trattamento Dati Sanitari in Cloud, CDPA Standard, HIPAA e Data Residency EU (ACN)</h2>
+<h3>1. Nomina a Responsabile del Trattamento (Art. 28 GDPR) e Validità del CDPA</h3>
+<p>Per i servizi Cloud e SaaS standardizzati (inclusi Google Workspace e Google Cloud Platform), l'accettazione dei Terms of Service (ToS) instaura un rapporto giuridico diretto tra Azienda Zero (Titolare del trattamento / Controller) e il Cloud Service Provider, integralmente disciplinato dal <strong>Cloud Data Processing Addendum (CDPA)</strong> standard conforme all'art. 28 del Regolamento UE 2016/679 (GDPR).</p>
+<h3>2. Chiarimento Giuridico Definitivo sulla Clausola HIPAA (Art. 3.3 viii ToS)</h3>
+<p>Come formalmente accertato con il supporto legale e DPO, la restrizione di cui all'art. 3.3 (viii) dei ToS relativa a informazioni sanitarie protette (<em>Protected Health Information - PHI</em>) sotto la legge statunitense <strong>HIPAA</strong> riguarda <strong>esclusivamente i soggetti e i dati sottoposti alla giurisdizione federale USA</strong>. Tale clausola <strong>NON pone alcuna limitazione contrattuale al trattamento di dati personali e sanitari di cittadini italiani ed europei regolati dal GDPR</strong>, restando in capo ad Azienda Zero la redazione della DPIA e la configurazione dei controlli tecnici di sicurezza.</p>
+<h3>3. Data Residency & Data Processing in Europa (Catalogo ACN)</h3>
+<ul>
+  <li>Per garantire sia la conservazione (<strong>Data at Rest / Storage</strong>) sia l'elaborazione (<strong>Data in Use / Processing</strong>, incluse le funzionalità di Intelligenza Artificiale Generativa <strong>Gemini</strong>) all'interno dell'Unione Europea secondo le istruzioni del Catalogo ACN (Qualifica <strong>QC2</strong>), è obbligatorio configurare la policy <strong>Data Region = Europe</strong> disponibile nelle edizioni <strong>Enterprise Plus / Frontline Plus</strong> e sui servizi Vertex AI in region europee (es. <code>europe-west8</code> Milano / <code>eu</code>).</li>
+  <li>Per i carichi di lavoro soggetti a requisiti <strong>PSN / QC3</strong> o interconnessi con basi dati storiche sul Polo Strategico Nazionale, Azienda Zero adotta il modello architetturale ibrido su GCP/PSN con collegamento dedicato <strong>Cloud Interconnect</strong>, crittografia CMEK e segregazione per Folder/Project.</li>
+</ul>
+</body></html>

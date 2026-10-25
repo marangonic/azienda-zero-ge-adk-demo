@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "azero-crav-governance-mcp": {
+      "command": "python3",
+      "args": ["mcp_servers/azero_crav_mcp_server.py"],
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "rootprj-377111",
+        "GOOGLE_CLOUD_LOCATION": "us-central1"
+      }
+    }
+  }
+}

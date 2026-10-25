@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="utf-8"><title>Architettura Infrastruttura GCP su PSN e Integrazione CTI 116117</title></head>
+<body>
+<h1>AZIENDA ZERO — UOC Sistemi Informativi</h1>
+<h2>Architettura Tecnica di Riferimento per i Workload Regionali su GCP / PSN e Integrazione NEA 116117</h2>
+<h3>1. Struttura Landing Zone e Segregazione Ambienti</h3>
+<ul>
+  <li><strong>Organizzazione dei Workload:</strong> 3 Applicazioni regionali core suddivise in Folder e Project GCP dedicati su <strong>2 ambienti</strong> (Collaudo/Pre-Produzione e Produzione), oltre a <strong>1 Progetto Cross-Common</strong> centralizzato per le macchine di gestione e la suite di monitoraggio e osservabilità.</li>
+  <li><strong>Stack Tecnologico Standard:</strong> Webserver front-end, bilanciamento tramite <strong>HAProxy gestito</strong>, database relazionali gestiti <strong>Cloud SQL</strong> in Alta Affidabilità (HA), e connettività ibrida tramite <strong>Cloud Interconnect</strong> verso il servizio PaaS Database Oracle ospitato su PSN.</li>
+  <li><strong>Integrazione Fonia Sanitaria CTI (116 e 117 / NEA 116117):</strong> Interconnessione a bassa latenza con i nodi CTI on-premise per il Numero Europeo Armonizzato <code>116117</code> (Continuità Assistenziale e cure non urgenti) e la centrale trasporti sanitari.</li>
+</ul>
+<h3>2. Modello di Governance Multi-Partner</h3>
+<ul>
+  <li><strong>Infrastruttura Cloud & Foundation GCP/PSN:</strong> Google Cloud & TIM/Noovle.</li>
+  <li><strong>Layer Applicativo:</strong> Almaviva.</li>
+  <li><strong>Sicurezza Perimetrale ed Esposizione Internet:</strong> Leonardo.</li>
+  <li><strong>Sviluppo Soluzioni Agentiche, AI Enablement & Formazione:</strong> Google Cloud & Miriade.</li>
+</ul>
+</body></html>
