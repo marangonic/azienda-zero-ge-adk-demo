@@ -16,8 +16,9 @@
 Apri [Google Cloud Shell su `rootprj-377111`](https://console.cloud.google.com/?cloudshell=true&project=rootprj-377111) e incolla questo singolo comando:
 
 ```bash
-git clone https://github.com/marangonic/azienda-zero-ge-adk-demo.git ~/azero_demo && cd ~/azero_demo && ./setup_cloudshell_azero.sh --with-adk
+git clone https://github.com/cloud-gtm/italy-healthcare-demo.git ~/azero_demo && cd ~/azero_demo && ./setup_cloudshell_azero.sh --with-adk
 ```
+*(In alternativa, dalla tua repo `cloud-gtm/ge-agets-creator`: `git clone -b azienda-zero-ge-adk-demo https://github.com/cloud-gtm/ge-agets-creator.git ~/azero_demo && cd ~/azero_demo && ./setup_cloudshell_azero.sh --with-adk`)*
 **Cosa fa in automatico questo comando in Cloud Shell:**
 1. Crea l'ambiente `.venv` con `google-adk` e `google-cloud-aiplatform[agent_engines,adk,evaluation]`.
 2. Crea il bucket `gs://rootprj-377111-azienda-zero-veneto`, carica i **6 documenti HTML ufficiali** di Azienda Zero e li indicizza in **2 secondi** nel Connettore Data Store **`azero-crav-pdta-ds`**.
@@ -28,7 +29,9 @@ git clone https://github.com/marangonic/azienda-zero-ge-adk-demo.git ~/azero_dem
 ### 2. Sul tuo PC (in Google Antigravity)
 Clona la stessa repository sul tuo PC e aprila come workspace in **Antigravity**:
 ```bash
-git clone https://github.com/marangonic/azienda-zero-ge-adk-demo.git
+git clone https://github.com/cloud-gtm/italy-healthcare-demo.git azienda-zero-ge-adk-demo
+# oppure da cloud-gtm/ge-agets-creator:
+git clone -b azienda-zero-ge-adk-demo https://github.com/cloud-gtm/ge-agets-creator.git azienda-zero-ge-adk-demo
 ```
 
 ---
