@@ -1,19 +1,24 @@
 # Antigravity Workspace — Demo Azienda Zero (Regione del Veneto) su `rootprj-377111`
 
-Questo workspace è pre-configurato per la demo live da **Google Antigravity** collegato al progetto GCP **`rootprj-377111`** (`us-central1` per Vertex AI Agent Engine e `global` per Gemini Enterprise App).
+Questo workspace è progettato per una **demo ibrida divisa su 3 ambienti complementari**:
+1. 💻 **Google Antigravity (sul tuo PC)** — Progettazione agentica assistita da **Rules** (`.agent/rules/`), **Skills** (`.agent/skills/`) e **Server MCP locale** (`azero-crav-governance-mcp`):
+   - Creazione e raffinamento delle istruzioni Dolphin ADK per l'agente **Gemini Enterprise App** (`artifacts/GE_APP_AGENT_INSTRUCTIONS_AZERO.md`).
+   - Sviluppo, ispezione e spiegazione del codice **Multi-Agente ADK a Grafo** (`azienda_zero_agent/agent.py`, `tools.py`, `callbacks.py`) e dell'**Eval Set** (`azienda_zero_eval.evalset.json`).
+   - Interrogazione diretta dei tool MCP di Azienda Zero (KPI 9 ULSS, compliance GDPR/CDPA/ACN, calcolatore sizing USD) dalla chat di Antigravity.
+2. ☁️ **Google Cloud Shell (sul progetto `rootprj-377111`)** — Esecuzione di `adk web` e di tutti i comandi CLI/API verso Google Cloud:
+   - Setup 1-click (`./setup_cloudshell_azero.sh --with-adk`) per creare il Bucket GCS, il Connettore `azero-crav-pdta-ds` e pubblicare l'agente GE App e le 3 Skills.
+   - Esecuzione di **`adk web --port 8080 --allow_origins "*"`** (con **Cloud Shell Web Preview -> Port 8080**) per mostrare il **Graph / Topology** del multi-agente e il tab **Eval**.
+   - Esecuzione del deploy su **Vertex AI Agent Engine + Agent Registry A2A** (`python3 deploy_azero_adk.py`) e delle **Valutazioni (Eval)** in Cloud Shell (`python3 run_local_eval.py`) e contro il Cloud (`python3 run_cloud_eval.py`).
+3. 🌐 **Google Cloud Console & Gemini Enterprise Web App (`rootprj-377111`)** — Dimostrazione live:
+   - **Gemini Enterprise Web App**: Connettore `azero-crav-pdta-ds`, Agent Designer (Visual Builder), 3 Skills e Chat Agent `Assistente Governance CRAV e PDTA Azienda Zero`.
+   - **Vertex AI Agent Engine Playground, Cloud Trace & Agent Registry**: test del multi-agente in Cloud, ispezione degli span OpenTelemetry dei sub-agenti e verifica della `A2A Agent Card`.
 
-## 🎯 Obiettivo della Demo (4 Atti)
-1. **ATTO 1 — Gemini Enterprise App + Connettore GCS (`azero-crav-pdta-ds`)**:
-   - Creazione/verifica del Connettore Cloud Storage (`gs://rootprj-377111-azienda-zero-veneto/documenti_azero/*.html`) con 6 documenti ufficiali di Azienda Zero (Gare CRAV Telemedicina/FSE PNRR, PDTA Regionali ULSS 1–9, Direttiva Privacy GDPR/CDPA/ACN Data Region Europe, Architettura GCP su PSN e CTI 116117, Matrice Fabbisogni 9 ULSS, Template Determina CRAV).
-   - Generazione e pubblicazione da Antigravity dell'agente multi-livello **`Assistente Governance CRAV e PDTA Azienda Zero`** (modello `gemini-3.8-flash`) e delle **3 Skills** dentro Gemini Enterprise App (`azero-governance-app`).
-2. **ATTO 2 — Agente Multi-Agente ADK (`azienda_zero_agent`) in Locale (`adk web`) e Topologia Graph**:
-   - Architettura Multi-Agente a Grafo (`azero_orchestrator` -> 3 Sub-Agenti specialistici `ulss_pdta_kpi_agent`, `crav_compliance_acn_agent`, `psn_cloud_sizing_agent` + pipeline `azero_full_audit_pipeline`).
-   - Avvio di `adk web --port 8080` per mostrare nel tab **Graph / Topology** come l'orchestratore delega il lavoro ai nodi del grafo e aggiorna lo stato condiviso (`tool_context.state`).
-3. **ATTO 3 — Valutazione (Eval) Locale su `adk web` e CLI (`run_local_eval.py`)**:
-   - Esecuzione dell'Eval Set `azienda_zero_agent/azienda_zero_eval.evalset.json` nel tab **Eval** di `adk web` (o via `python3 run_local_eval.py`) per validare la **traiettoria sul grafo** (`tool_trajectory_avg_score`) e la qualità della risposta (`response_match_score`).
-4. **ATTO 4 — Deploy in Cloud (Vertex AI Agent Engine + Agent Registry A2A) ed Eval in Cloud (`run_cloud_eval.py`)**:
-   - Deploy del multi-agente su **Vertex AI Agent Engine** (`rootprj-377111`, `us-central1`) con OpenTelemetry (`Cloud Trace` & `Cloud Logging`) e registrazione in **Agent Registry** (`A2A Agent Card`).
-   - Ripetizione della stessa valutazione in Cloud contro il `ReasoningEngine` remoto (`python3 run_cloud_eval.py`) con report comparativo **Locale vs Cloud** (`artifacts/EVAL_COMPARISON_LOCAL_VS_CLOUD.md` e `artifacts/eval_report_cloud.html`).
+---
+
+## ⚠️ Regola Operativa per Antigravity sul PC
+Quando l'utente ti chiede in Antigravity di creare/modificare l'agente GE App, il multi-agente ADK o l'Eval:
+- **Genera, mostra o modifica direttamente i file nel workspace** (`artifacts/GE_APP_AGENT_INSTRUCTIONS_AZERO.md`, `azienda_zero_agent/agent.py`, `azienda_zero_agent/tools.py`, `azienda_zero_agent/azienda_zero_eval.evalset.json`) oppure invoca i tool del **Server MCP locale** (`azero-crav-governance-mcp`).
+- **NON tentare di lanciare `adk web` o `gcloud` sul PC locale**: fornisci invece all'utente il blocco comandi pronto da incollare in **Google Cloud Shell** (su `rootprj-377111`)!
 
 ---
 
@@ -25,13 +30,3 @@ Ogni volta che generi tabelle di costo, preventivi o tool di sizing (sia in chat
   - **Prezzo Mese 3Y CUD (`$/mo`)**
 - Per le **VM con sistema operativo**, esponi sempre il **Costo Mese con Sistema Operativo (`OS $/mo` e `Totale con OS $/mo`)** fornendo il costo licenza OS (`Windows Server`, `RHEL`, ecc.) **solo per gli OS supportati** (escludendo il costo licenza per gli OS fuori supporto / End-of-Support).
 - Per i database **MS SQL Server**, fornisci il costo licenza in una **colonna separata (`COSTO MESE LICENZA MSSQL $/MO`)** **solo per le istanze supportate su OS supportato** (non fornire il costo licenza DB se il DB è fuori supporto o se l'OS sottostante è fuori supporto).
-
----
-
-## 🛠️ Skills & MCP Server Attivi in questo Workspace
-- **Skills (`.agent/skills/`)**:
-  - `ge-app-azero-builder`: Progetta e pubblica agenti No-Code/Low-Code e Connettori in Gemini Enterprise App (`rootprj-377111`).
-  - `adk-multiagent-graph-builder`: Sviluppa, avvia in `adk web` (con Graph Topology) e distribuisce su Vertex AI Agent Engine + Agent Registry il multi-agente `azienda_zero_agent`.
-  - `adk-eval-local-and-cloud`: Esegue e confronta le valutazioni (`Eval`) della traiettoria sul grafo sia in locale (`adk web` / `run_local_eval.py`) sia in Cloud (`run_cloud_eval.py`).
-- **MCP Server Locale (`mcp_servers/azero_crav_mcp_server.py`)**:
-  - Server MCP stdio (`azero-crav-governance-mcp`) configurato in `.agent/mcp_config.json` e `.gemini/settings.json` con tool live per interrogare i KPI delle 9 ULSS venete, la compliance ACN/GDPR e il calcolatore di sizing GCP/PSN in `$ USD/mo`.
