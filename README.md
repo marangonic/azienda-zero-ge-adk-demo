@@ -12,9 +12,9 @@ Repository completo per la demo live di **Azienda Zero (Regione del Veneto)** su
 Apri [Google Cloud Shell su `rootprj-377111`](https://console.cloud.google.com/?cloudshell=true&project=rootprj-377111) ed esegui:
 
 ```bash
-git clone https://github.com/cloud-gtm/italy-healthcare-demo.git ~/azero_demo && cd ~/azero_demo && ./setup_cloudshell_azero.sh --with-adk
-# oppure dal branch dedicato in cloud-gtm/ge-agets-creator:
 git clone -b azienda-zero-ge-adk-demo https://github.com/cloud-gtm/ge-agets-creator.git ~/azero_demo && cd ~/azero_demo && ./setup_cloudshell_azero.sh --with-adk
+# oppure dal branch main (use cases/Azienda-Zero-Veneto):
+git clone https://github.com/cloud-gtm/ge-agets-creator.git ~/ge-agets-creator && cd ~/ge-agets-creator/"use cases/Azienda-Zero-Veneto" && ./setup_cloudshell_azero.sh --with-adk
 ```
 
 Al termine del setup, lo script avvia automaticamente **`adk web --port 8080 --allow_origins "*"`**: clicca sull'icona **Web Preview** in alto a destra in Cloud Shell $\rightarrow$ **Preview on port 8080** per mostrare il tab **Graph** (topologia del multi-agente) e il tab **Eval** (`azienda_zero_eval`).
