@@ -46,15 +46,22 @@ echo "==========================================================================
 echo "🏥 AZIENDA ZERO (REGIONE DEL VENETO) — SETUP CLOUD SHELL SU ${PROJECT_ID}"
 echo "================================================================================"
 
-# 1. Preparazione Virtualenv Python per ADK in Cloud Shell
-if [ ! -d ".venv" ]; then
-  echo "▶ [1/5] Creazione virtualenv Python (.venv) e installazione Google ADK & Vertex AI SDK..."
-  python3 -m venv .venv
-  source .venv/bin/activate
-  pip install --upgrade pip --quiet
-  pip install -r requirements.txt --quiet
+# 1. Preparazione Virtualenv Python per ADK in Cloud Shell (su /tmp per non saturare i 5GB di $HOME)
+VENV_DIR="/tmp/azero_venv"
+if [ ! -f "${VENV_DIR}/bin/adk" ]; then
+  echo "▶ [1/5] Pulizia cache e creazione virtualenv Python in ${VENV_DIR} (zero impatto sul disco \$HOME)..."
+  rm -rf ~/.cache/pip /tmp/pip_tmp .venv "${VENV_DIR}" 2>/dev/null || true
+  mkdir -p /tmp/pip_tmp
+  export TMPDIR=/tmp/pip_tmp
+  python3 -m venv "${VENV_DIR}"
+  ln -sfn "${VENV_DIR}" .venv
+  source "${VENV_DIR}/bin/activate"
+  pip install --no-cache-dir --upgrade pip --quiet
+  pip install --no-cache-dir -r requirements.txt --quiet
+  rm -rf /tmp/pip_tmp
 else
-  source .venv/bin/activate
+  ln -sfn "${VENV_DIR}" .venv
+  source "${VENV_DIR}/bin/activate"
 fi
 
 if [ "${WEB_ONLY}" = true ]; then
