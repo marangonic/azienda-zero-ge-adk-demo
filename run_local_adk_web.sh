@@ -4,21 +4,21 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${SCRIPT_DIR}"
 
-VENV_DIR="/tmp/azero_venv"
-if [ ! -f "${VENV_DIR}/bin/adk" ]; then
-  echo "=== Creazione ambiente virtuale Python in ${VENV_DIR} (symlink .venv) ==="
-  rm -rf ~/.cache/pip /tmp/pip_tmp .venv "${VENV_DIR}" 2>/dev/null || true
+if [ -L ".venv" ]; then
+  rm -f .venv
+fi
+if [ ! -f ".venv/bin/adk" ]; then
+  echo "=== Creazione ambiente virtuale Python persistente (.venv) ==="
+  rm -rf .venv /tmp/pip_tmp 2>/dev/null || true
   mkdir -p /tmp/pip_tmp
   export TMPDIR=/tmp/pip_tmp
-  python3 -m venv "${VENV_DIR}"
-  ln -sfn "${VENV_DIR}" .venv
-  source "${VENV_DIR}/bin/activate"
+  python3 -m venv .venv
+  source .venv/bin/activate
   pip install --no-cache-dir --upgrade pip --quiet
   pip install --no-cache-dir -r requirements.txt --quiet
   rm -rf /tmp/pip_tmp
 else
-  ln -sfn "${VENV_DIR}" .venv
-  source "${VENV_DIR}/bin/activate"
+  source .venv/bin/activate
 fi
 
 export GOOGLE_GENAI_USE_VERTEXAI=TRUE
